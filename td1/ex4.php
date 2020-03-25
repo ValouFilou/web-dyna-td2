@@ -1,33 +1,25 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>un petit monde pour l'exo 4!!!!</title>
-    </head>
-    <body>
-        <a href="ex4.php?nblignes=2&nbColonnes=2">tableau 2x2</a>
-        <a href="ex4.php?nblignes=5&nbColonnes=5">tableau 5x5</a>
-        <a href="ex4.php?nblignes=10&nbColonnes=8">tableau 10x8</a>
-        <a href="ex4.php?nblignes=20&nbColonnes=20">tableau 20x20</a>
-        <a href="ex4.php?nblignes=40&nbColonnes=40">tableau 40x40</a>
-        <br>
-        <?php
-          $nblignes=$_GET['nblignes'];
-          $nbcolonnes=$_GET['nbColonnes'];
-          echo "hooooo un joli tableau tout moche !!!";
-          echo "<table border='1'>";
-
-          for ($i=1; $i<=$nblignes; $i++){
-            echo '<tr>';
-            for ($j=1; $j<=$nbcolonnes; $j++){
-              echo '<td>';
-              echo "$i - $j";
-              echo '</td>';
-            }
-            echo '</tr>';
-          }
-
-          echo '</table>';
-        ?>
-    </body>
-</html>
+<?php
+$title='Exercice n°4 (Itérations)';
+?>
+<a href="?l=2&c=2">Tableau 2 x 2</a><br>
+<a href="?l=5&c=5">Tableau 5 x 5</a><br>
+<a href="?l=10&c=8">Tableau 10 x 8</a><br>
+<hr>
+<?php
+$nbLignes=$_GET["l"]??10;
+$nbColonnes=$_GET["c"]??10;
+echo "<h2>Tableau de $nbLignes par $nbColonnes</h2>";
+?>
+<table border='1'>
+    <tbody>
+      <?php for($i=0;$i<$nbLignes;$i++){
+        $gras=($i%2==0)?"bold":"normal";
+      ?>
+        <tr>
+        <?php for($j=0;$j<$nbColonnes;$j++){
+            $couleur=($j%2==0)?"red":"black";
+            ?>
+            <td style="font-weight: <?=$gras ?>;color:<?=$couleur ?>"><?="$i - $j"?></td>
+        <?php }?>
+        </tr>
+      <?php }?>
